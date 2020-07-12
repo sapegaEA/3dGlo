@@ -51,4 +51,72 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     countTimer('13 july 2020');
+
+    // menu
+    const toggleMenu = () => {
+        const btnMenu = document.querySelector('.menu'),
+            menu = document.querySelector('menu'),
+            closeBtn = document.querySelector('.close-btn'),
+            menuItems = document.querySelectorAll('ul>li');
+
+        const handlerMenu = () => {
+            menu.classList.toggle('active-menu');
+        };
+
+        btnMenu.addEventListener('click', handlerMenu);
+        closeBtn.addEventListener('click', handlerMenu);
+        menuItems.forEach(elem => elem.addEventListener('click', handlerMenu));
+
+    };
+
+    toggleMenu();
+
+    // popup
+
+    const togglePopUp = () => {
+        const popup = document.querySelector('.popup'),
+            popupBtn = document.querySelectorAll('.popup-btn'),
+            popUpClose = document.querySelector('.popup-close'),
+            popUpContent = document.querySelector('.popup-content');
+
+        popupBtn.forEach(elem => {
+            elem.addEventListener('click', () => {
+                popup.style.display = 'block';
+            });
+        });
+        popUpClose.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // анимация popUp
+        if (document.body.clientWidth > 768) {
+
+            popupBtn.forEach(elem => {
+                elem.addEventListener('click', () => {
+                    const start = Date.now();
+
+                    const timer = setInterval(() => {
+
+                        const timePassed = Date.now() - start;
+
+                        if (timePassed >= 2000) {
+                            clearInterval(timer);
+                            return;
+                        }
+
+                        function draw(timePassed) {
+                            popUpContent.style.top = timePassed / 6 + 'px';
+                        }
+
+                        draw(timePassed);
+
+                    }, 10);
+                });
+            });
+        }
+
+    };
+    togglePopUp();
+
+
 });
