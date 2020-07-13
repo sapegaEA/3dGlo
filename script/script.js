@@ -172,8 +172,18 @@ window.addEventListener('DOMContentLoaded', () => {
     // slider
 
     const slider = () => {
-        const slide = document.querySelectorAll('.portfolio-item'),
-            btn = document.querySelectorAll('.portfolio-btn'),
+        const slide = document.querySelectorAll('.portfolio-item');
+        const ulPortfolioDots = document.querySelector('.portfolio-dots');
+
+        // добавление точек в слайдер
+        let li;
+        for (let i = 0; i < slide.length; i++) {
+            li = document.createElement("li");
+            li.classList.add('dot');
+            ulPortfolioDots.appendChild(li);
+        }
+
+        const btn = document.querySelectorAll('.portfolio-btn'),
             dot = document.querySelectorAll('.dot'),
             slider = document.querySelector('.portfolio-content');
 
